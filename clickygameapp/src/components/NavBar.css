@@ -1,0 +1,37 @@
+.navbar {
+    /* border-style: solid;
+    border-width: 2px;
+    border-color: black; */
+    background-color: firebrick ;
+    box-shadow: 3px #999, 3px #999;
+    vertical-align: middle;
+    height: auto;
+}
+
+.navbar li {
+/* list-style-type: none; */
+display: inline-block;
+text-align: center;
+color: white;
+font-weight: bold;
+/* height: %; */
+
+
+}
+
+.itemLeft {
+    width: 20%;
+    font-size: 20px;
+    /* padding-left: 5px; */
+}
+
+.itemCenter {
+    font-size: 28px;
+    width: 60%;
+}
+
+.itemRight {
+    width: 20%;
+    font-size: 20px;
+    /* padding-right: 5px; */
+}

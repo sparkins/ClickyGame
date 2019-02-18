@@ -1,0 +1,22 @@
+
+.jumbotron {
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color: lightgray  ;
+}
+
+.jumbotron-title {
+    text-align: center;
+}
+
+.scoreboard {
+    float: right;
+    margin-right: 5%;
+}
+
+.jumbotron-text {
+    margin-top: 10px;
+    margin-left: 5%;
+
+}
