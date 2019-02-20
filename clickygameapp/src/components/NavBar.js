@@ -10,7 +10,7 @@ class NavBar extends React.Component {
                     <ul>
                         <li className="itemLeft"></li>
                         <li className="itemCenter">Emoji-Click Memory Game</li>
-                        <li className="itemRight">Score: {this.props.score}</li>
+                        <li className="itemRight">Score: {this.props.score} | Top Score: {this.props.topScore}</li>
                     </ul>
                 </nav>
             </Navbar >

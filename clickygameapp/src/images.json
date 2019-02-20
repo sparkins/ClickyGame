@@ -1,0 +1,14 @@
+[
+    { "id": 1, "image": "./../../public/images/emoji-anger.png", "isClicked": false },
+    { "id": 2, "image": "./../../public/images/emoji-big-eyes.png", "isClicked": false },
+    { "id": 3, "image": "./../../public/images/emoji-blushing.png", "isClicked": false },
+    { "id": 4, "image": "./../../public/images/emoji-crying.png", "isClicked": false },
+    { "id": 5, "image": "./../../public/images/emoji-goofy.png", "isClicked": false },
+    { "id": 6, "image": "./../../public/images/emoji-love-heart.png", "isClicked": false },
+    { "id": 7, "image": "./../../public/images/emoji-nerd-glasses.png", "isClicked": false },
+    { "id": 8, "image": "./../../public/images/emoji-sadness.png", "isClicked": false },
+    { "id": 9, "image": "./../../public/images/emoji-tears-of-joy.png", "isClicked": false },
+    { "id": 10, "image": "./../../public/images/emoji-teethy-grin.png", "isClicked": false },
+    { "id": 11, "image": "./../../public/images/emoji-the-thinker.png", "isClicked": false },
+    { "id": 12, "image": "./../../public/images/emoji-zipper-mouth.png", "isClicked": false }
+]
