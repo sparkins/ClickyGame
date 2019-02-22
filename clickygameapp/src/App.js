@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'underscore';
-// import logo from './logo.svg';
 import './App.css';
-// import '../semantic/dist/semantic.min.css'
-import { Card, Icon, Image } from 'semantic-ui-react'
 import NavBar from "./components/NavBar";
 import Banner from "./components/Banner";
 import ImageCards from "./components/ImageCards";
-// import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import { Grid } from 'semantic-ui-react'
 
+
+// Array of objects to store the images, their ids and there initial clicked state
 const images = [
   { id: 1, src: "images/emoji-anger.png", isClicked: false },
   { id: 2, src: "images/emoji-big-eyes.png", isClicked: false },
@@ -27,104 +23,90 @@ const images = [
   { id: 12, src: "images/emoji-zipper-mouth.png", isClicked: false }
 ]
 
-// console.log (images);
-
-const shuffledImages = _.shuffle(images)
-
-console.log(shuffledImages);
-
+// class to store the app states and methods
 class App extends Component {
   state = {
-    images: shuffledImages,
+    images: _.shuffle(images),
     currentScore: 0,
     topScore: 0,
-    result: ""
   }
 
+  // Reset method to reset all images to unclicked, current score to 0 and shuffle the images.
   handleReset = () => {
+    for (var i=0;i<images.length;i++) {
+      images[i].isClicked = false;
+    }
     this.setState({
+      images: _.shuffle(images),
       currentScore: 0,
-      topScore: this.state.topScore,
-      result: ""
     });
   }
-
+  // Method to handle what happens when you click an image  
   handleClick = (id) => {
-    // find the index of the image that was clicked
     const newImageArr = [];
+    var result = "";
+    // loop through the array of images and create an array of IDs so we can establish the index, as the image array shuffles each time
     this.state.images.map((image, i) => (
       newImageArr.push(image.id)
     ))
     let index = newImageArr.indexOf(id);
-    // console.log ("New Image Arr", newImageArr);
-    console.log("Index: ", index);
     // locate the exact image using array index syntax this.state.images[index]
-    // this.state.images[index]
     const newImages = this.state.images.slice();
-    // // find index and change isClicked property for that image
+    // // find the image that was clicked and update it's isClicked property
     const image = newImages[index];
     image.isClicked = !image.isClicked;
     console.log("after update: ", image)
 
     if (!image.isClicked) {
-      this.result = "Game Over!"
-      alert(this.result)
-      this.setState({ images: newImages })
+      result = "Game Over!"
+      alert(result)
+      // this.setState({ images: newImages })
       this.handleReset();
     }
     else {
       var newScore = this.state.currentScore + 1;
       console.log("Score: ", newScore);
       if (newScore === 12) {
-        this.result = "Winner winner chicken dinner, you clicked all the images";
-        alert(this.result)
+        result = "Winner winner chicken dinner, you clicked all the images";
+        alert(result)
+        this.setState({ images: _.shuffle(images), currentScore: newScore });
+
       }
       else {
-        this.setState({ images: newImages })
+        this.setState({ images: _.shuffle(images) })
       }
 
-      this.setState({ images: newImages, currentScore: newScore, result: "" });
+      this.setState({ images: _.shuffle(images), currentScore: newScore, result: "" });
     }
-    };
+  };
 
-    // handleIncrement = () => {
-    //   let newScore = this.state.currentScore + 1;
-    //   this.setState({
-    //     currentScore: newScore,
-    //     result: ""
-    //   });
-    //   if (newScore >= this.state.topScore) {
-    //     this.setState({ topScore: newScore });
-    //   }
-    //   else if (newScore === 12) {
-    //     this.setState({ result: "You Win!" });
-    //   }
-    //   // this.handleShuffle();
-    // };
-
-
-
-    render() {
-      return (
-        <div>
-          <NavBar score={this.setState.newScore} />
-          <Banner />
-          <Container>
-            <Row>
-              {this.state.images.map((image, i) => (
-                <Col key={i}>
-                  <ImageCards
-                    handleClick={this.handleClick}
-                    id={image.id}
-                    image={image.src}
-                  />
-                </Col>
-              ))}
-            </Row>
-          </Container>
-        </div>
-      )
-    }
+  render() {
+    return (
+      <div>
+        <NavBar score={this.setState.newScore} />
+        <Banner />
+        {/* <Container>
+            <Row> */}
+        <Grid>
+          <Grid.Row columns={4}>
+            {this.state.images.map((image, i) => (
+              // <Col key={i}>
+              <Grid.Column key={i}>
+                <ImageCards
+                  handleClick={this.handleClick}
+                  id={image.id}
+                  image={image.src}
+                />
+                {/* </Col> */}
+              </Grid.Column>
+            ))}
+            {/* </Row>
+          </Container> */}
+          </Grid.Row>
+        </Grid>
+      </div>
+    )
   }
+}
 
-  export default App;
+export default App;
