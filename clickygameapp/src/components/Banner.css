@@ -1,22 +1,21 @@
 
-.jumbotron {
-    border-width: 2px;
-    border-color: black;
-    border-style: solid;
-    background-color: lightgray  ;
+.container {
+    align-content: center;
+    background-color: white;
+    opacity: 0.9;
+    padding: 1%;
+    margin-top: 1%;
+    margin-bottom: 10px;
+    font-style: italic;
+    border-color: steelblue;
+    border-style: outset;
+    border-width: 10px;
 }
 
-.jumbotron-title {
+.header {
     text-align: center;
 }
 
-.scoreboard {
-    float: right;
-    margin-right: 5%;
-}
-
-.jumbotron-text {
-    margin-top: 10px;
-    margin-left: 5%;
-
+.h2 {
+    justify-content: center;
 }

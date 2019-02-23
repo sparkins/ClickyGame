@@ -1,0 +1,14 @@
+.card {
+    height: 200px;
+    width: 200px !important;
+}
+
+.image {
+    height: 200px;
+    width: 200px;
+    padding: 50px;
+    opacity: 0.80;
+    border-color: steelblue;
+    border-style: outset;
+    border-width: 10px;
+}

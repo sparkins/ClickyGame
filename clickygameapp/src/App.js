@@ -12,7 +12,7 @@ const images = [
   { id: 1, src: "images/emoji-anger.png", isClicked: false },
   { id: 2, src: "images/emoji-big-eyes.png", isClicked: false },
   { id: 3, src: "images/emoji-blushing.png", isClicked: false },
-  { id: 4, src: "images/emoji-crying.png", isClicked: false },
+  { id: 4, src: "images/emoji-winking.png", isClicked: false },
   { id: 5, src: "images/emoji-goofy.png", isClicked: false },
   { id: 6, src: "images/emoji-love-heart.png", isClicked: false },
   { id: 7, src: "images/emoji-nerd-glasses.png", isClicked: false },
@@ -29,6 +29,7 @@ class App extends Component {
     images: _.shuffle(images),
     currentScore: 0,
     topScore: 0,
+    message: ""
   }
 
   // Reset method to reset all images to unclicked, current score to 0 and shuffle the images.
@@ -39,14 +40,18 @@ class App extends Component {
     this.setState({
       images: _.shuffle(images),
       currentScore: 0,
+      message: "New Game"
+
     });
   }
+
   // Method to handle what happens when you click an image  
   handleClick = (id) => {
     const newImageArr = [];
-    var result = "";
+    var newMessage = "";
+    var newTopScore;
     // loop through the array of images and create an array of IDs so we can establish the index, as the image array shuffles each time
-    this.state.images.map((image, i) => (
+    this.state.images.forEach((image, i) => (
       newImageArr.push(image.id)
     ))
     let index = newImageArr.indexOf(id);
@@ -55,53 +60,56 @@ class App extends Component {
     // // find the image that was clicked and update it's isClicked property
     const image = newImages[index];
     image.isClicked = !image.isClicked;
-    console.log("after update: ", image)
 
     if (!image.isClicked) {
-      result = "Game Over!"
-      alert(result)
-      // this.setState({ images: newImages })
+      newMessage = "This image was already clicked!"
+      alert("Game Over!")
       this.handleReset();
     }
     else {
       var newScore = this.state.currentScore + 1;
-      console.log("Score: ", newScore);
-      if (newScore === 12) {
-        result = "Winner winner chicken dinner, you clicked all the images";
-        alert(result)
-        this.setState({ images: _.shuffle(images), currentScore: newScore });
-
+      newMessage = "Great job, that was a successful click!"
+      if (newScore > this.state.topScore) {
+        newTopScore = newScore;
       }
       else {
-        this.setState({ images: _.shuffle(images) })
+        newTopScore = this.topScore;
       }
+      console.log("Score: ", newScore);
+      console.log ("New Top Score: ", newTopScore);
 
-      this.setState({ images: _.shuffle(images), currentScore: newScore, result: "" });
+      if (newScore < 12) {
+        newMessage = "Great job, that was a successful click!"
+        this.setState({ images: _.shuffle(images), currentScore: newScore, topScore: newTopScore, message: newMessage });
+      }
+      else {
+        newMessage = "Great job, that was a successful click!"
+        alert("Winner winner chicken dinner, you clicked all the images")
+        this.setState({ images: _.shuffle(images), currentScore: newScore, topScore: newTopScore, message: newMessage })
+        this.handleReset();
+      }
     }
   };
 
   render() {
     return (
       <div>
-        <NavBar score={this.setState.newScore} />
-        <Banner />
-        {/* <Container>
-            <Row> */}
-        <Grid>
+        <NavBar/>
+        <Banner/>
+
+        <Grid 
+          className='imageGrid'
+          style={{"margin": "5%"}}>
           <Grid.Row columns={4}>
             {this.state.images.map((image, i) => (
-              // <Col key={i}>
               <Grid.Column key={i}>
-                <ImageCards
+                <ImageCards className='emojiImages'
                   handleClick={this.handleClick}
                   id={image.id}
                   image={image.src}
                 />
-                {/* </Col> */}
               </Grid.Column>
             ))}
-            {/* </Row>
-          </Container> */}
           </Grid.Row>
         </Grid>
       </div>

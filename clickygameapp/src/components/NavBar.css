@@ -1,35 +1,35 @@
 .navbar {
-    /* border-style: solid;
-    border-width: 2px;
-    border-color: black; */
+    position: sticky;
     background-color: firebrick ;
-    box-shadow: 3px #999, 3px #999;
-    vertical-align: middle;
-    height: auto;
+    vertical-align: auto;
+    height: 0.5%;
+    opacity: 1;
+    border-color: steelblue;
+    border-style: outset;
+    border-width: 3px;
 }
 
 .navbar li {
-/* list-style-type: none; */
-display: inline-block;
-text-align: center;
-color: white;
-font-weight: bold;
+    display: inline-block;
+    padding-top: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
 
 }
 
 .itemLeft {
-    width: 20%;
-    font-size: 20px;
+    width: 30%;
+    font-size: 28px;
     /* padding-left: 5px; */
 }
 
 .itemCenter {
-    font-size: 28px;
-    width: 60%;
+    font-size: 20px;
+    width: 50%;
 }
 
 .itemRight {
     width: 20%;
     font-size: 20px;
-    /* padding-right: 5px; */
 }
