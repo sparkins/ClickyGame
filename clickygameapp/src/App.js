@@ -29,7 +29,7 @@ class App extends Component {
     images: _.shuffle(images),
     currentScore: 0,
     topScore: 0,
-    message: ""
+    message: "Click an image to begin!!!"
   }
 
   // Reset method to reset all images to unclicked, current score to 0 and shuffle the images.
