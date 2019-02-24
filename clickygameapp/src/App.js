@@ -50,6 +50,7 @@ class App extends Component {
     const newImageArr = [];
     var newMessage = "";
     var newTopScore;
+    console.log ("This State: ",this.state)
     // loop through the array of images and create an array of IDs so we can establish the index, as the image array shuffles each time
     this.state.images.forEach((image, i) => (
       newImageArr.push(image.id)
@@ -69,11 +70,12 @@ class App extends Component {
     else {
       var newScore = this.state.currentScore + 1;
       newMessage = "Great job, that was a successful click!"
+      console.log ("this.state.topscore: ",this.state.topScore)
       if (newScore > this.state.topScore) {
         newTopScore = newScore;
       }
       else {
-        newTopScore = this.topScore;
+        newTopScore = this.state.topScore;
       }
       console.log("Score: ", newScore);
       console.log ("New Top Score: ", newTopScore);
@@ -92,9 +94,10 @@ class App extends Component {
   };
 
   render() {
+    console.log ("new state in render: ",this.state)
     return (
       <div>
-        <NavBar/>
+        <NavBar currentScore={this.state.currentScore} topScore={this.state.topScore} message={this.state.message}/>
         <Banner/>
 
         <Grid 
