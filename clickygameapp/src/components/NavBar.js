@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import './NavBar.css';
 
+// Create a sticky navbar that show the title of the game, a dynamic message and the scoreboard
 class NavBar extends React.Component {
     
     render() {

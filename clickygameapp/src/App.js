@@ -58,28 +58,28 @@ class App extends Component {
     let index = newImageArr.indexOf(id);
     // locate the exact image using array index syntax this.state.images[index]
     const newImages = this.state.images.slice();
-    // // find the image that was clicked and update it's isClicked property
+    // find the image that was clicked and update it's isClicked property
     const image = newImages[index];
     image.isClicked = !image.isClicked;
 
+    // flip the isClicked value for that image, if it's flipped from true to false it signifies a second click and triggers game over alert
     if (!image.isClicked) {
       newMessage = "This image was already clicked!"
       alert("Game Over!")
       this.handleReset();
     }
+    // if it hasn't been clicked before it increments the score by 1 and updates the scoreboard 
     else {
       var newScore = this.state.currentScore + 1;
       newMessage = "Great job, that was a successful click!"
-      console.log ("this.state.topscore: ",this.state.topScore)
+      // if this is a new high score it updates the topscore
       if (newScore > this.state.topScore) {
         newTopScore = newScore;
       }
       else {
         newTopScore = this.state.topScore;
       }
-      console.log("Score: ", newScore);
-      console.log ("New Top Score: ", newTopScore);
-
+      // if you have successfully clicked all 12 images, you get a congrats alert
       if (newScore < 12) {
         newMessage = "Great job, that was a successful click!"
         this.setState({ images: _.shuffle(images), currentScore: newScore, topScore: newTopScore, message: newMessage });
@@ -93,6 +93,7 @@ class App extends Component {
     }
   };
 
+  // render the components as well as grid of images
   render() {
     console.log ("new state in render: ",this.state)
     return (
